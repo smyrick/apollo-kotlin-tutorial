@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.apollographql.apollo3").version("3.3.1")
 }
 
 android {
@@ -47,4 +48,12 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+}
+
+apollo {
+    packageName.set("com.example.rocketreserver")
+    introspection {
+        endpointUrl.set("https://apollo-fullstack-tutorial.herokuapp.com/graphql")
+        schemaFile.set(file("src/main/graphql/com/example/rocketreserver/schema.graphqls"))
+    }
 }
